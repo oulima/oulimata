@@ -161,7 +161,7 @@ Les classes de dépôt permettent de stocker les requêtes SQL effectuées sur u
 
 Les annotations sont des des blocs de documentation utilisés comme métadonnées de la classe
 
-Les annoations peuvent être associées à la classe ou à une propriété d’une classe
+Les annotations peuvent être associées à la classe ou à une propriété d’une classe
 
 Les classes de réflection permettent de récupérer les blocs de documentation
 
@@ -216,7 +216,7 @@ Dans le fichier **package.json**, créer les scripts associés à `webpack`
 ```json
 "scripts": {
 	"watch": "webpack --watch",
-    "build": "webpack --mode=production"
+	"build": "webpack --mode=production"
 },
 ```
 
