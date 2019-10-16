@@ -1,13 +1,13 @@
 <?php
 
-namespace App\API\Controller;
+namespace App\Front\Controller;
 
-use App\API\Controller\AbstractController;
+use App\Front\Controller\AbstractController;
 
 class NotFoundController extends AbstractController
 {
 	public function index(array $uriVars = [])
 	{
-		$this->render();
+		$this->render('not-found/index');
 	}
 }

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\API\Core;
+namespace App\Front\Core;
 
 class Router
 {
 	private $routes = [
-		//'#^/(?<id>\d+)$#' => [
-		'#^/$#' => [
+		'#^/(?<id>\d+)$#' => [
+		//'#^/$#' => [
 			'controller' => 'controller.homepage',
 			'method' => 'index'
 		],

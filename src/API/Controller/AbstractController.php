@@ -4,10 +4,17 @@ namespace App\API\Controller;
 
 abstract class AbstractController
 {
-	protected function render(string $view, array $uriVars = []):void
+	protected function render(array $uriVars = [], int $statusCode = 200):void
 	{
-		// extract convertit les clés d'un array en variable
-		extract($uriVars);
-		require_once __DIR__ . "/../../../templates/$view.php";
+		//header('Content-Type: application/json');
+		header('Access-Control-Allow-Origin: *');
+		header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+
+		http_response_code($statusCode);
+
+		echo json_encode([
+			'message' => 'OK',
+			'status' => $statusCode
+		]);
 	}
 }
