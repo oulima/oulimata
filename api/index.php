@@ -34,8 +34,8 @@ echo '<pre>';var_dump($dotenv->get('db_host'));echo '</pre>';
 */
 
 // database
-$database = $container->get('core.database');
-var_dump($database->connect());
+/*$database = $container->get('core.database');
+var_dump($database->connect());*/
 
 
 
