@@ -10,7 +10,9 @@ class Container
 	{
 		$this->services = [
 			'controller.homepage' => function(){
-				return new \App\API\Controller\HomepageController();
+				return new \App\API\Controller\HomepageController(
+					$this->services['repository.city']()
+				);
 			},
 			'controller.not.found' => function(){
 				return new \App\API\Controller\NotFoundController();
@@ -21,6 +23,11 @@ class Container
 			'core.database' => function(){
 				return new \App\API\Core\Database(
 					$this->services['core.dotenv']()
+				);
+			},
+			'repository.city' => function(){
+				return new \App\API\Repository\CityRepository(
+					$this->services['core.database']()
 				);
 			},
 

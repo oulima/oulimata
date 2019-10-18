@@ -157,122 +157,30 @@ Les colonnes de la table deviennent des propriétés de la classe PHP
 
 Les classes de dépôt permettent de stocker les requêtes SQL effectuées sur une entité
 
-## Annotations
+## Évaluation
 
-Les annotations sont des des blocs de documentation utilisés comme métadonnées de la classe
+> Créer un dépôt git en ligne et renseigner son lien, devant vos nom et prénom, à l’adresse : https://codeshare.io/arM0vv
 
-Les annotations peuvent être associées à la classe ou à une propriété d’une classe
+Dans les migrations, ajouter la création d’une table nommée `country` contenant les colonnes
 
-Les classes de réflection permettent de récupérer les blocs de documentation
+* **id** représentant la clé primaire
 
-```php
-/**
- * @annotation{"property" : "value"}
-*/
-class MyClass
-{
-	/**
-	 * @annotation{"property" : "value"}
-	 * @annotation2{"property" : "value", "property2" : "value"}
-	*/
-	private $myProperty;
-}
-```
+* **name** pour le nom du pays
 
-## JSON Web Token
+* **city_id** pour lier un pays et sa capitale; clé étrangère ciblant la clé primaire de la table `city`
 
-[JSON Web Tokens](https://jwt.io/) permettent de créer des jetons de sécurité à partir d’une clé secrète
+Dans l’API
 
-De nombreuses bibliothèques existent dans les principaux langages
+* créer la route `/countries`
 
-En PHP, il est possible d’utiliser la bibliothèque [JWT Framework](https://web-token.spomky-labs.com/)
+* créer le contrôleur `CountryController`
 
-Différents modules de la bibliothèque sont à importer
+* créer l’entité `Country` et la classe de dépôt `CountryRepository`
 
-```bash
-composer require web-token/jwt-core
-composer require web-token/jwt-signature
-```
+Dans la partie publique de l’application
 
-Pour créer un JWT : <https://web-token.spomky-labs.com/components/signed-tokens-jws/jws-creation>
+* créer la route `/countries`
 
-Pour vérifier un JWT : <https://web-token.spomky-labs.com/components/signed-tokens-jws/jws-loading>
+* créer une vue dans un dossier nommé `country`
 
-Pour gérer l’authentification avec JWT :<https://auth0.com/learn/json-web-tokens/>
-
-## Webpack
-
-Installer `webpack` et `webpack-cli` en global et en dépendance
-
-```bash
-npm init -y
-npm install -g webpack@latest webpack-cli@latest
-npm install webpack@latest webpack-cli@latest --save-dev
-npm install mini-css-extract-plugin css-loader --save-dev
-```
-
-Dans le fichier **package.json**, créer les scripts associés à `webpack`
-
-```json
-"scripts": {
-	"watch": "webpack --watch",
-	"build": "webpack --mode=production"
-},
-```
-
-Dans le fichier **webpack.config.js**, configurer webpack
-
-```js
-const path = require("path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
- 
-module.exports = {
-  mode: 'development',
-  entry: {
-    index: './assets/js/index.js',
-  },
-  output: {
-    path: path.resolve(__dirname, './public'),
-    filename: 'js/[name].js'
-  },
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-          },
-          'css-loader',
-        ],
-      },
-    ]
-  },
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: '/css/[name].css',
-      chunkFilename: '/css/[id].css',
-      ignoreOrder: false,
-    }),
-  ]
-};
-```
-
-Lancer le script `watch`
-
-```bash
-npm run watch
-```
-
-Par exemple, pour utiliser la bibliothèque bootstrap en CSS et JS
-
-```bash
-npm install jquery bootstrap popper.js --save
-```
-
-```js
-import 'bootstrap/dist/css/bootstrap.min.css';
- 
-import $ from 'jquery';
-import 'bootstrap';
-```
+La vue doit appeler la route `/countries` de l’API et afficher les pays, ainsi que leur capitale, en HTML	
